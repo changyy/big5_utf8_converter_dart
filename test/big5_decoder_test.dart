@@ -8,7 +8,8 @@ void main() {
 
     setUp(() {
       decoderPregen = Big5Decoder();
-      decoderFile = Big5Decoder(mappingFilePath: 'assets/big5_to_utf8_lookup.bin');
+      decoderFile =
+          Big5Decoder(mappingFilePath: 'assets/big5_to_utf8_lookup.bin');
     });
 
     test('Decode "中文" using pre-generated data', () {
@@ -23,16 +24,16 @@ void main() {
 
     test('Decode "Hello, 中文" using pre-generated data', () {
       final mixedData = [
-        0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x2C, 0x20,  // "Hello, " in ASCII
-        0xa4, 0xa4, 0xa4, 0xe5                    // "中文" in Big5
+        0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x2C, 0x20, // "Hello, " in ASCII
+        0xa4, 0xa4, 0xa4, 0xe5 // "中文" in Big5
       ];
       expect(decoderPregen.big5ToUtf8String(mixedData), equals('Hello, 中文'));
     });
 
     test('Decode "Hello, 中文" using file data', () {
       final mixedData = [
-        0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x2C, 0x20,  // "Hello, " in ASCII
-        0xa4, 0xa4, 0xa4, 0xe5                    // "中文" in Big5
+        0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x2C, 0x20, // "Hello, " in ASCII
+        0xa4, 0xa4, 0xa4, 0xe5 // "中文" in Big5
       ];
       expect(decoderFile.big5ToUtf8String(mixedData), equals('Hello, 中文'));
     });
@@ -51,7 +52,8 @@ void main() {
 
     test('Test strip option', () {
       final big5Data = [0xa4, 0xa4, 0xa4, 0xe5];
-      expect(decoderPregen.big5ToUtf8String(big5Data, strip: true), equals('中文'));
+      expect(
+          decoderPregen.big5ToUtf8String(big5Data, strip: true), equals('中文'));
       expect(decoderFile.big5ToUtf8String(big5Data, strip: true), equals('中文'));
     });
   });

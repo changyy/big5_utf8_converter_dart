@@ -13,7 +13,7 @@ class Big5Decoder extends Converter<List<int>, String> {
     if (mappingFilePath != '') {
       loadMappingFromFile(mappingFilePath);
     } else {
-     big5ToUtf8LookupTable = big5ToUtf8LookupData;
+      big5ToUtf8LookupTable = big5ToUtf8LookupData;
     }
   }
 

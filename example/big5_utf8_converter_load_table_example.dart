@@ -7,7 +7,8 @@ void main() {
   final List<int> big5Data = [0xa4, 0xa4, 0xa4, 0xe5];
 
   // 创建 Big5Decoder 实例
-  final decoder = Big5Decoder(mappingFilePath: 'assets/big5_to_utf8_lookup.bin');
+  final decoder =
+      Big5Decoder(mappingFilePath: 'assets/big5_to_utf8_lookup.bin');
 
   // 转换 Big5 到 UTF-8
   final utf8String = decoder.big5ToUtf8String(big5Data);
@@ -22,8 +23,8 @@ void main() {
 
   // 处理包含 ASCII 和 Big5 混合的数据
   final mixedData = [
-    0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x2C, 0x20,  // "Hello, " in ASCII
-    0xa4, 0xa4, 0xa4, 0xe5                    // "中文" in Big5
+    0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x2C, 0x20, // "Hello, " in ASCII
+    0xa4, 0xa4, 0xa4, 0xe5 // "中文" in Big5
   ];
   final mixedResult = decoder.big5ToUtf8String(mixedData);
   print('混合数据转换结果: $mixedResult');
