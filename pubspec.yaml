@@ -1,0 +1,7 @@
+name: big5_utf8_converter
+
+environment:
+  sdk: '^3.5.0'
+
+dev_dependencies:
+  test: ^1.21.0
