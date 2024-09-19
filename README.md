@@ -54,7 +54,10 @@ void main() {
 If you want to load mapping data from a file:
 
 ```dart
-final decoder = Big5Decoder(mappingFilePath: 'path/to/your/big5_to_utf8_lookup.bin');
+final decoder = Big5Decoder();
+final file = File('path/to/your/big5_to_utf8_lookup.bin');
+final bytes = file.readAsBytesSync();
+decoder.loadMappingFromBytes(bytes.buffer.asUint16List());
 ```
 
 ## API Reference
@@ -63,7 +66,7 @@ final decoder = Big5Decoder(mappingFilePath: 'path/to/your/big5_to_utf8_lookup.b
 
 The main decoder class.
 
-- `Big5Decoder({String unknownChar = '�', String? mappingFilePath})`: Creates a new decoder instance.
+- `Big5Decoder({String unknownChar = '�'})`: Creates a new decoder instance.
 - `String big5ToUtf8String(List<int> src, {bool strip = false})`: Converts a list of Big5 encoded bytes to a UTF-8 string.
 
 ## Development

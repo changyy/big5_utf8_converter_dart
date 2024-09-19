@@ -1,5 +1,6 @@
 //import 'package:big5_utf8_converter/big5_utf8_converter.dart';
 import '../lib/big5_utf8_converter.dart';
+import 'dart:io';
 
 void main() {
   // 示例 Big5 编码的数据
@@ -7,8 +8,10 @@ void main() {
   final List<int> big5Data = [0xa4, 0xa4, 0xa4, 0xe5];
 
   // 创建 Big5Decoder 实例
-  final decoder =
-      Big5Decoder(mappingFilePath: 'assets/big5_to_utf8_lookup.bin');
+  final decoder = Big5Decoder();
+  final file = File('assets/big5_to_utf8_lookup.bin');
+  final bytes = file.readAsBytesSync();
+  decoder.loadMappingFromBytes(bytes.buffer.asUint16List());
 
   // 转换 Big5 到 UTF-8
   final utf8String = decoder.big5ToUtf8String(big5Data);

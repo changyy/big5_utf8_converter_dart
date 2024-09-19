@@ -1,5 +1,6 @@
 import 'package:test/test.dart';
 import 'package:big5_utf8_converter/big5_utf8_converter.dart';
+import 'dart:io';
 
 void main() {
   group('Big5Decoder Tests', () {
@@ -8,8 +9,10 @@ void main() {
 
     setUp(() {
       decoderPregen = Big5Decoder();
-      decoderFile =
-          Big5Decoder(mappingFilePath: 'assets/big5_to_utf8_lookup.bin');
+      decoderFile = Big5Decoder();
+      final file = File('assets/big5_to_utf8_lookup.bin');
+      final bytes = file.readAsBytesSync();
+      decoderFile.loadMappingFromBytes(bytes.buffer.asUint16List());
     });
 
     test('Decode "中文" using pre-generated data', () {

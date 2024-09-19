@@ -1,26 +1,21 @@
 //part of big5_utf8_converter;
 import 'dart:typed_data';
 import 'dart:convert';
-import 'dart:io';
 import 'big5_to_utf8_lookup_data.dart';
 
 class Big5Decoder extends Converter<List<int>, String> {
   late Uint16List big5ToUtf8LookupTable;
   late String unknownChar;
 
-  Big5Decoder({String unknownChar = '�', String mappingFilePath = ''}) {
+  Big5Decoder({String unknownChar = '�'}) {
     this.unknownChar = unknownChar;
-    if (mappingFilePath != '') {
-      loadMappingFromFile(mappingFilePath);
-    } else {
-      big5ToUtf8LookupTable = big5ToUtf8LookupData;
-    }
+    big5ToUtf8LookupTable = big5ToUtf8LookupData;
   }
 
-  void loadMappingFromFile(String filePath) {
-    final file = File(filePath);
-    final bytes = file.readAsBytesSync();
-    big5ToUtf8LookupTable = Uint16List.fromList(bytes.buffer.asUint16List());
+  void loadMappingFromBytes(List<int> bytesBufferAsUint16List) {
+    //final file = File(filePath);
+    //final bytes = file.readAsBytesSync();
+    big5ToUtf8LookupTable = Uint16List.fromList(bytesBufferAsUint16List);
   }
 
   @override
