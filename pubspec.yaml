@@ -1,6 +1,6 @@
 name: big5_utf8_converter
 description: A Dart library for converting Big5 encoded text to UTF-8. Efficiently handles Traditional Chinese content with support for custom mapping and file-based lookup tables.
-version: 1.1.0
+version: 1.1.1
 homepage: https://github.com/changyy/big5_utf8_converter_dart
 repository: https://github.com/changyy/big5_utf8_converter_dart
 issue_tracker: https://github.com/changyy/big5_utf8_converter_dart/issues
